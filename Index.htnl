@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We’re Almost There</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .symbol {
+            font-size: 5rem;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            opacity: 0.8;
+        }
+        .countdown {
+            font-size: 2rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="symbol">💡⏳</div> <!-- Lightbulb & Clock Unicode -->
+    <div class="message">We’re Almost There. Find the Others.</div>
+    <div class="countdown" id="countdown"></div>
+
+    <script>
+        function startCountdown() {
+            const targetDate = new Date();
+            targetDate.setHours(targetDate.getHours() + 3); // 3-hour countdown
+
+            function updateCountdown() {
+                const now = new Date();
+                const timeLeft = targetDate - now;
+                if (timeLeft <= 0) {
+                    document.getElementById("countdown").innerText = "It’s time.";
+                    return;
+                }
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                document.getElementById("countdown").innerText = `${hours}h ${minutes}m ${seconds}s`;
+            }
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+        }
+        startCountdown();
+    </script>
+</body>
+</html>
